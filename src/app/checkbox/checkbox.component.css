@@ -1,0 +1,18 @@
+.placeholder {
+    width: 20;
+    height: 20;
+    border-width: 1;
+    border-color: #9AA0BA;
+    border-radius: 4;
+}
+
+.checkbox {
+    margin: 16 16 16 0;
+}
+
+.text {
+    font-size: 16;
+    line-height: 6;
+    color: #1E2E50;
+    vertical-align: center;
+}

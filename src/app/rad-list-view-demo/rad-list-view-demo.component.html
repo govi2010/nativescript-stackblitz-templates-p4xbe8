@@ -1,0 +1,36 @@
+<GridLayout rows="auto *" backgroundColor="#f2f2f2">
+  <SearchBar row="0" hint="Search" height="40" margin="0 16" backgroundColor="#ffffff" clearFocus
+             (textChange)="onSearch($event)"></SearchBar>
+  <RadListView row="1"
+               [items]="(selectableRoutLocationsWithStartEnd$ |ngrxPush)"
+               [trackBy]="trackByFn" #ListElement
+               [filteringFunction]="searchFunction"
+               [itemTemplateSelector]="templateSelectorFunc">
+
+    <ng-template let-item="item" let-i="index" tkListItemTemplate tkTemplateKey="regular">
+      <AppCheckbox [text]="item.name" [checked]="item?.checked"
+                   (change)="checkUncheck(item.id, !item.checked, item.type)"
+                   [cssStyles]="{margin: '0 16', borderBottomWidth: 1, borderBottomColor: '#E4E6EF'}">
+      </AppCheckbox>
+    </ng-template>
+
+    <ng-template let-item="item" let-i="index" tkListItemTemplate tkTemplateKey="start">
+      <FlexboxLayout padding="0" margin="0 16" alignItems="center" borderBottomWidth="1"
+                     borderBottomColor="#E4E6EF">
+        <Label [text]="item.name" flexGrow="1" class="text OpenSansRegular"></Label>
+      </FlexboxLayout>
+
+    </ng-template>
+
+    <ng-template let-item="item" let-i="index" tkListItemTemplate tkTemplateKey="end">
+      <FlexboxLayout padding="0" margin="0 16" alignItems="center" borderBottomWidth="1"
+                     borderBottomColor="#E4E6EF">
+        <Label [text]="item.name" flexGrow="1" class="text OpenSansRegular"></Label>
+      </FlexboxLayout>
+    </ng-template>
+
+  </RadListView>
+
+  <ActivityIndicator row="0" rowSpan="2" [busy]="(isLoading$ | ngrxPush)">
+  </ActivityIndicator>
+</GridLayout>
