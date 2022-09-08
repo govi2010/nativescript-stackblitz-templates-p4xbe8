@@ -19,11 +19,7 @@ export const searchFunctionFactory = (search$: Observable<string>) => {
     let searchText = '';
     search$.pipe(take(1)).subscribe((data) => (searchText = data));
     if (searchText?.length) {
-      return (
-        item.name?.toLowerCase()?.includes(searchText?.toLowerCase()) &&
-        (!(item as AccountLocation).scope ||
-          (item as AccountLocation).scope === AccountScope.account)
-      );
+      return item.name?.toLowerCase()?.includes(searchText?.toLowerCase());
     } else {
       return true;
     }
