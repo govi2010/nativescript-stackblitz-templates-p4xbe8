@@ -1,9 +1,20 @@
 <GridLayout columns="auto *" [ngStyle]="cssStyles">
-    <AbsoluteLayout (tap)="toggle()">
-        <Label class="placeholder checkbox"></Label>
-        <SVGview [visibility]="checked ? 'visible' : 'hidden'" class="checkbox"
-                  src="~/assets/images/common/ic-checkbox.svg" width="20" height="20"></SVGview>
-    </AbsoluteLayout>
+  <AbsoluteLayout (tap)="toggle()">
+    <Label class="placeholder checkbox"></Label>
+    <SVGview
+      [visibility]="checked ? 'visible' : 'hidden'"
+      class="checkbox"
+      src="~/assets/images/common/ic-checkbox.svg"
+      width="20"
+      height="20"
+    >
+    </SVGview>
+  </AbsoluteLayout>
 
-    <Label col="1" [text]="text" class="text OpenSansRegular" paddingLeft="0"></Label>
+  <Label
+    col="1"
+    [text]="text"
+    class="text OpenSansRegular"
+    paddingLeft="0"
+  ></Label>
 </GridLayout>

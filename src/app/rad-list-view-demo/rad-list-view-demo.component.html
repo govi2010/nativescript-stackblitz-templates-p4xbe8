@@ -17,18 +17,18 @@
     orientation="vertical"
   >
     <ng-template let-item="item" let-i="index" cvTemplateKey="regular">
-      <!-- <AppCheckbox
+      <AppCheckbox
         [text]="item.name"
         [checked]="item?.checked"
-        (change)="checkUncheck(item.id, !item.checked, item.type)"
+        (tap)="checkUncheck(item.id, !item.checked, item.type)"
         [cssStyles]="{
           margin: '0 16',
           borderBottomWidth: 1,
           borderBottomColor: '#E4E6EF'
         }"
       >
-      </AppCheckbox> -->
-      <GridLayout
+      </AppCheckbox>
+      <!-- <GridLayout
         columns="auto,*"
         padding="0"
         margin="0 16"
@@ -49,7 +49,7 @@
           flexGrow="1"
           class="text OpenSansRegular"
         ></Label>
-      </GridLayout>
+      </GridLayout> -->
     </ng-template>
 
     <ng-template let-item="item" let-i="index" cvTemplateKey="start">
