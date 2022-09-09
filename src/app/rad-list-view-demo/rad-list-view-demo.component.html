@@ -8,20 +8,15 @@
     clearFocus
     (textChange)="onSearch($event)"
   ></SearchBar>
-  <RadListView
+  <CollectionView
     height="650"
     row="1"
     [items]="data"
     #ListElement
-    [filteringFunction]="searchFunction"
     [itemTemplateSelector]="templateSelectorFunc"
+    orientation="vertical"
   >
-    <ng-template
-      let-item="item"
-      let-i="index"
-      tkListItemTemplate
-      tkTemplateKey="regular"
-    >
+    <ng-template let-item="item" let-i="index" cvTemplateKey="regular">
       <!-- <AppCheckbox
         [text]="item.name"
         [checked]="item?.checked"
@@ -57,12 +52,7 @@
       </GridLayout>
     </ng-template>
 
-    <ng-template
-      let-item="item"
-      let-i="index"
-      tkListItemTemplate
-      tkTemplateKey="start"
-    >
+    <ng-template let-item="item" let-i="index" cvTemplateKey="start">
       <FlexboxLayout
         padding="0"
         margin="0 16"
@@ -78,12 +68,7 @@
       </FlexboxLayout>
     </ng-template>
 
-    <ng-template
-      let-item="item"
-      let-i="index"
-      tkListItemTemplate
-      tkTemplateKey="end"
-    >
+    <ng-template let-item="item" let-i="index" cvTemplateKey="end">
       <FlexboxLayout
         padding="0"
         margin="0 16"
@@ -98,7 +83,7 @@
         ></Label>
       </FlexboxLayout>
     </ng-template>
-  </RadListView>
+  </CollectionView>
 
   <ActivityIndicator row="0" rowSpan="2" [busy]="isLoading$ | ngrxPush">
   </ActivityIndicator>
