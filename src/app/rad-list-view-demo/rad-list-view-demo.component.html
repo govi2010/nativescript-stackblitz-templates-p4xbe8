@@ -9,6 +9,7 @@
     (textChange)="onSearch($event)"
   ></SearchBar>
   <RadListView
+    height="650"
     row="1"
     [items]="selectableRoutLocationsWithStartEnd$ | ngrxPush"
     [trackBy]="trackByFn"

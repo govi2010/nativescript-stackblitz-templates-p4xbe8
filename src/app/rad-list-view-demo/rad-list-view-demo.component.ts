@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { RouterExtensions } from '@nativescript/angular';
-import { isAndroid, Screen } from '@nativescript/core';
+import { isAndroid, Screen, ObservableArray } from '@nativescript/core';
 import { distinctUntilChanged, Observable, take, takeUntil } from 'rxjs';
 import { isEqual } from 'lodash-es';
 import { RadListViewDemoComponentStore } from './rad-list-view-demo.component.store';
@@ -13,18 +13,7 @@ import {
   Selectable,
 } from '../modal';
 import { RadListViewComponent } from 'nativescript-ui-listview/angular';
-
-export const searchFunctionFactory = (search$: Observable<string>) => {
-  return (item: RouteLocation) => {
-    let searchText = '';
-    search$.pipe(take(1)).subscribe((data) => (searchText = data));
-    if (searchText?.length) {
-      return item.name?.toLowerCase()?.includes(searchText?.toLowerCase());
-    } else {
-      return true;
-    }
-  };
-};
+import { searchFunctionFactory, syncObservableArray } from './util';
 
 @Component({
   selector: 'AppRadListViewComponentDemo',
@@ -36,6 +25,10 @@ export class RadListViewComponentDemo
   extends BaseComponent
   implements OnInit, OnDestroy
 {
+  public data: ObservableArray<Selectable<RouteLocation>> = new ObservableArray<
+    Selectable<RouteLocation>
+  >();
+
   @ViewChild('ListElement') listElement: RadListViewComponent;
   selectableRoutLocationsWithStartEnd$: Observable<
     Selectable<RouteLocation>[]
@@ -70,6 +63,9 @@ export class RadListViewComponentDemo
 
   ngOnInit() {
     this.store.getData();
+    this.selectableRoutLocationsWithStartEnd$.subscribe((d) => {
+      syncObservableArray(this.data, d, 'id');
+    });
   }
 
   templateSelectorFunc(item: Selectable<RouteLocation>) {
