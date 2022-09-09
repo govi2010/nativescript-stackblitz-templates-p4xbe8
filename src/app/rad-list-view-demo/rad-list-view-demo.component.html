@@ -12,7 +12,6 @@
     height="650"
     row="1"
     [items]="data"
-    [trackBy]="trackByFn"
     #ListElement
     [filteringFunction]="searchFunction"
     [itemTemplateSelector]="templateSelectorFunc"
@@ -42,15 +41,10 @@
         borderBottomWidth="1"
         borderBottomColor="#E4E6EF"
       >
-        <!--        <AppCheckbox [text]="item.name" [checked]="item?.checked"-->
-        <!--                     (change)="checkUncheck(item.id, !item.checked, item.type)"-->
-        <!--                     [cssStyles]="{margin: '0 16', borderBottomWidth: 1, borderBottomColor: '#E4E6EF'}">-->
-        <!--        </AppCheckbox>-->
         <Switch
           col="0"
           [checked]="item?.checked"
           (tap)="checkUncheck(item.id, !item.checked, item.type)"
-          (checkedChange)="log(item.id, !item.checked, item.type)"
         >
         </Switch>
 
