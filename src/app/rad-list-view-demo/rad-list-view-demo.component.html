@@ -8,27 +8,32 @@
     clearFocus
     (textChange)="onSearch($event)"
   ></SearchBar>
-  <CollectionView
+  <RadListView
     height="650"
     row="1"
     [items]="data"
     #ListElement
+    [filteringFunction]="searchFunction"
     [itemTemplateSelector]="templateSelectorFunc"
-    orientation="vertical"
   >
-    <ng-template let-item="item" let-i="index" cvTemplateKey="regular">
-      <AppCheckbox
+    <ng-template
+      let-item="item"
+      let-i="index"
+      tkListItemTemplate
+      tkTemplateKey="regular"
+    >
+      <!-- <AppCheckbox
         [text]="item.name"
         [checked]="item?.checked"
-        (tap)="checkUncheck(item.id, !item.checked, item.type)"
+        (change)="checkUncheck(item.id, !item.checked, item.type)"
         [cssStyles]="{
           margin: '0 16',
           borderBottomWidth: 1,
           borderBottomColor: '#E4E6EF'
         }"
       >
-      </AppCheckbox>
-      <!-- <GridLayout
+      </AppCheckbox> -->
+      <GridLayout
         columns="auto,*"
         padding="0"
         margin="0 16"
@@ -49,10 +54,15 @@
           flexGrow="1"
           class="text OpenSansRegular"
         ></Label>
-      </GridLayout> -->
+      </GridLayout>
     </ng-template>
 
-    <ng-template let-item="item" let-i="index" cvTemplateKey="start">
+    <ng-template
+      let-item="item"
+      let-i="index"
+      tkListItemTemplate
+      tkTemplateKey="start"
+    >
       <FlexboxLayout
         padding="0"
         margin="0 16"
@@ -68,7 +78,12 @@
       </FlexboxLayout>
     </ng-template>
 
-    <ng-template let-item="item" let-i="index" cvTemplateKey="end">
+    <ng-template
+      let-item="item"
+      let-i="index"
+      tkListItemTemplate
+      tkTemplateKey="end"
+    >
       <FlexboxLayout
         padding="0"
         margin="0 16"
@@ -83,7 +98,7 @@
         ></Label>
       </FlexboxLayout>
     </ng-template>
-  </CollectionView>
+  </RadListView>
 
   <ActivityIndicator row="0" rowSpan="2" [busy]="isLoading$ | ngrxPush">
   </ActivityIndicator>
