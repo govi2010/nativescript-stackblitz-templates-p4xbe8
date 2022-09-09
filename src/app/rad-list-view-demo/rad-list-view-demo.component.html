@@ -48,7 +48,8 @@
         <Switch
           col="0"
           [checked]="item?.checked"
-          (checkedChange)="checkUncheck(item.id, !item.checked, item.type)"
+          (tap)="checkUncheck(item.id, !item.checked, item.type)"
+          (checkedChange)="log(item.id, !item.checked, item.type)"
         >
         </Switch>
 

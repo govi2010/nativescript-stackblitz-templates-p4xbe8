@@ -52,7 +52,10 @@ export class RadListViewComponentDemo
     distinctUntilChanged()
   );
   searchFunction = searchFunctionFactory(this.search$);
-  trackByFn = (index, item) => item?.id;
+  trackByFn = (index, item) => {
+    console.log('trackByFn', item?.id);
+    return item?.id;
+  };
 
   constructor(
     private router: RouterExtensions,
@@ -89,5 +92,10 @@ export class RadListViewComponentDemo
 
   checkUncheck(id, checked: boolean, type: LocationType) {
     this.store.checkUnCheckLocation({ id, checked });
+  }
+  log(id, checked: boolean, type: LocationType) {
+    // if (this.listElement) {
+    //   this.listElement.listView.refresh();
+    // }
   }
 }
