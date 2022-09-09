@@ -11,7 +11,7 @@
   <RadListView
     height="650"
     row="1"
-    [items]="selectableRoutLocationsWithStartEnd$ | ngrxPush"
+    [items]="data"
     [trackBy]="trackByFn"
     #ListElement
     [filteringFunction]="searchFunction"
